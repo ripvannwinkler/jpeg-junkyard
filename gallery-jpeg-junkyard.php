@@ -8,14 +8,12 @@ function get_gallery_menu($galleries, $cgid)
 {
     $html = "";
     foreach ($galleries as $g) {
-        if (substr($g->name, 0, 2) == 'jj') {
-            $id = $g->ID;
-            $vol = substr($g->name, 2, 99);
-            $active_class = ($id == $cgid) ? 'active' : '';
-            $link = "<a href='?vol=$id'>Vol. $vol</a>";
-            $wrapper = "<div class='jj-menu-item $active_class' data-id='$id' data-cgid='$cgid'>$link</div>";
-            $html .= $wrapper;
-        }
+        $id = $g->ID;
+        $vol = substr($g->name, 2, 99);
+        $active_class = ($id == $cgid) ? 'active' : '';
+        $link = "<a href='?vol=$id'>Vol. $vol</a>";
+        $wrapper = "<div class='jj-menu-item $active_class' data-id='$id' data-cgid='$cgid'>$link</div>";
+        $html .= $wrapper;
     }
 
     return $html;
@@ -82,21 +80,19 @@ $image_start = $gallery->attachments()[0]->url;
 
 ?>
 
-<div style="display: table; margin: 0 auto;">
-	<div class="jj-container">
-		<div class="jj-albums">
-			<div>
-				<?=$menu?>
-			</div>
+<div class="jj-container">
+	<div class="jj-albums">
+		<div>
+			<?=$menu?>
 		</div>
-		<div class="jj-preview">
-			<div class="jj-image-container" style="background: url('<?=$image_start?>') center center / cover;">
-			</div>
+	</div>
+	<div class="jj-preview">
+		<div class="jj-image-container" style="background: url('<?=$image_start?>') center center / cover;">
 		</div>
-		<div class="jj-gallery">
-			<div id="<?=$html_id?>" class="<?=$html_class?>">
-				<?=$gallery_items?>
-			</div>
+	</div>
+	<div class="jj-gallery">
+		<div id="<?=$html_id?>" class="<?=$html_class?>">
+			<?=$gallery_items?>
 		</div>
 	</div>
 </div>

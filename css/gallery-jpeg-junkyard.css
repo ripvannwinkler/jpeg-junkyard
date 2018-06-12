@@ -1,137 +1,203 @@
+/**
+ * Animations
+ */
+
+.fade-in {
+  animation: fade-in .75s ease-in-out;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * Elements
+ */
+
 .jj-container {
-	display: block;
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin: 1rem;
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1rem;
 }
 
-@media(min-width:768px) {
-	.jj-container {
-		display: flex;
-		flex-wrap: nowrap;
-	}
-}
-
-.jj-container>* {
-	display: table;
-	margin: 0rem auto 2rem;
-}
-
-@media(min-width:768px) {
-	.jj-container>* {
-		display: block;
-		margin: 0rem 1rem 2rem;
-	}
+.jj-container > * {
+  width: 100%;
+  margin: 0rem auto 2rem;
 }
 
 .jj-albums,
 .jj-preview {
-	flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
-.jj-albums>div {
-	line-height: 1;
-	margin: 0 7.5px;
-	padding: 0;
+.jj-albums > div {
+  line-height: 1;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .jj-albums .jj-menu-item:not(:last-child) {
-	margin: 0 0 0.5em;
+  margin: 0 0 0.5em;
 }
 
 .jj-albums a {
-	color: #999;
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 1;
-	text-transform: uppercase;
-	text-decoration: none;
+  color: #999;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .jj-albums .active a {
-	color: #000;
+  color: #000;
 }
 
 .jj-albums a:hover,
 .jj-albums a:focus,
 .jj-albums a:active {
-	text-decoration: none;
-	color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
 .jj-preview {
-	padding: 0 2rem;
+  padding: 0;
+  margin: 0 auto 1rem;
 }
 
 .jj-preview .jj-image-container {
-	position: relative;
-	width: 180px;
-	height: 318px;
-	border-radius: 5px;
-}
-
-@media(min-width:960px) {
-	.jj-preview .jj-image-container {
-		cursor: pointer;
-		position: relative;
-		width: 300px;
-		height: 533px;
-	}
+  width: 210px;
+  height: 373px;
+  margin: 0 auto;
+	cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+	background-color:#000;
 }
 
 .jj-preview .jj-image-container::before {
-	overflow: visible;
-	position: absolute;
-	left: -28px;
-	top: 50%;
-	cursor: pointer;
-	content: "\25c0";
-	font-size: 24px;
-	color: #888;
+  overflow: visible;
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  cursor: pointer;
+  content: "\25c0";
+  font-size: 24px;
+  color: #888;
 }
 
 .jj-preview .jj-image-container::after {
-	overflow: visible;
-	position: absolute;
-	right: -28px;
-	top: 50%;
-	cursor: pointer;
-	content: "\25ba";
-	font-size: 24px;
-	color: #888;
+  overflow: visible;
+  position: absolute;
+  right: -28px;
+  top: 50%;
+  cursor: pointer;
+  content: "\25ba";
+  font-size: 24px;
+  color: #888;
 }
 
 .jj-gallery {
-	text-align: center;
-	flex: 1 1 auto;
+  text-align: center;
+  flex: 1 1 auto;
 }
 
 .jj-gallery .foogallery {
-	white-space: normal;
-	flex-wrap: wrap;
-	padding: 0;
-	margin: 0;
+  display: none;
+  white-space: normal;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
 }
 
-.jj-gallery .foogallery>div {
-	display: inline-block;
-	margin: 0 7.5px 15px;
-	font-size: 0;
+.jj-gallery .foogallery > div {
+  display: inline-block;
+  margin: 0 7.5px 15px;
+  font-size: 0;
 }
 
 .jj-gallery .foogallery img {
-	border-radius: 3px;
-	width: 80px;
+  border-radius: 3px;
+  width: 80px;
 }
 
-@media(min-width:1024px) {
-	.jj-gallery .foogallery img {
-		width: 100px;
-	}
+@media (min-width: 768px) {
+  .jj-container {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .jj-container > * {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .jj-albums {
+    white-space: nowrap;
+    min-width: 120px;
+  }
+
+  .jj-preview .jj-image-container {
+    width: 240px;
+    height: 426px;
+    margin: 0 1rem;
+  }
+
+  .jj-gallery .foogallery {
+    flex: 1 1 100%;
+    display: block;
+  }
+
+  .jj-gallery .jj-gallery-item img {
+    width: 30px;
+  }
 }
 
-@media(min-width:1360px) {
-	.jj-gallery .foogallery img {
-		width: 130px;
-	}
+@media (min-width: 1024px) {
+  .jj-preview .jj-image-container {
+    width: 300px;
+    height: 533px;
+    margin: 0 1rem;
+  }
+
+  .jj-gallery .jj-gallery-item img {
+    width: 60px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .jj-gallery .jj-gallery-item img {
+    width: 75px;
+  }
 }
