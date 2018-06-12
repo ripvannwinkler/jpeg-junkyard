@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name: FooGallery - JPEG Junkyard
  * Description: 
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Chris Vann
  * Author URI:  https://www.github.com/ripvannwinkler
  * License:     GPL-2.0+
@@ -24,7 +24,7 @@ if ( !class_exists( 'JPEG_Junkyard_Template_FooGallery_Extension' ) ) {
 
 	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_FILE', __FILE__ );
 	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_URL', plugin_dir_url( __FILE__ ));
-	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_VERSION', '1.0.1');
+	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_VERSION', '1.0.2');
 	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_PATH', plugin_dir_path( __FILE__ ));
 	define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_SLUG', 'foogallery-jpeg-junkyard');
 	//define('JPEG_JUNKYARD_TEMPLATE_FOOGALLERY_EXTENSION_UPDATE_URL', 'http://fooplugins.com');
