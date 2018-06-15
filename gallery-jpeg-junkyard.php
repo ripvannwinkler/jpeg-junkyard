@@ -4,6 +4,12 @@
  * This is the template that is run when a FooGallery shortcode is rendered to the frontend
  */
 
+function modify_html_attrs($attr,$args,$obj) {
+	return array_merge($attr, array('rel'=>'lightbox'));
+}
+
+// add_filter('foogallery_attachment_html_link_attributes', 'modify_html_attrs',10,3);
+
 function get_gallery_menu($galleries, $cgid)
 {
     $html = "";
@@ -23,7 +29,10 @@ function get_gallery_items($gallery, $args)
 {
     $html = "";
     foreach ($gallery->attachments() as $attachment) {
-        $html .= '<div class="jj-gallery-item">' . $attachment->html($args) . '</div>';
+				$html .= '<div class="jj-gallery-item">';
+				$html .= '<a href="' . $attachment->url . '" class="lightbox" rel="lightbox">lightbox</a>';
+				$html .= $attachment->html($args);
+				$html .= '</div>';
     }
 
     return $html;
@@ -72,7 +81,7 @@ $args['link'] = foogallery_gallery_template_setting('thumbnail_link', 'image');
 
 // html attribtues for later
 $html_id = 'foogallery-gallery-' . $gallery->ID;
-$html_class = 'foogallery ';
+$html_class = 'foogallery';
 
 $menu = get_gallery_menu($galleries, $gallery->ID);
 $gallery_items = get_gallery_items($gallery, $args);

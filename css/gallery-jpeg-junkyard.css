@@ -3,40 +3,43 @@
  */
 
 .fade-in {
-  animation: fade-in .75s ease-in-out;
+	animation: fade-in .75s ease-in-out;
 }
 
 @-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
+
 @-moz-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
+
 @-o-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
+
 @keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 /**
@@ -44,162 +47,177 @@
  */
 
 .jj-container {
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 1rem;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 1rem;
 }
 
-.jj-container > * {
-  width: 100%;
-  margin: 0rem auto 2rem;
+.jj-container>* {
+	width: 100%;
+	margin: 0rem auto 2rem;
 }
 
 .jj-albums,
 .jj-preview {
-  flex: 0 0 auto;
+	flex: 0 0 auto;
 }
 
-.jj-albums > div {
-  line-height: 1;
-  text-align: center;
-  margin: 0 auto;
-  padding: 0;
+.jj-albums>div {
+	line-height: 1;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
 }
 
 .jj-albums .jj-menu-item:not(:last-child) {
-  margin: 0 0 0.5em;
+	margin: 0 0 0.5em;
 }
 
 .jj-albums a {
-  color: #999;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1;
-  text-transform: uppercase;
-  text-decoration: none;
+	color: #999;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 
 .jj-albums .active a {
-  color: #000;
+	color: #000;
 }
 
 .jj-albums a:hover,
 .jj-albums a:focus,
 .jj-albums a:active {
-  text-decoration: none;
-  color: #000;
+	text-decoration: none;
+	color: #000;
 }
 
 .jj-preview {
-  padding: 0;
-  margin: 0 auto 1rem;
+	padding: 0;
+	margin: 0 auto 1rem;
 }
 
 .jj-preview .jj-image-container {
-  width: 210px;
-  height: 373px;
-  margin: 0 auto;
+	width: 210px;
+	height: 373px;
+	margin: 0 auto;
 	cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-	background-color:#000;
-	box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+	position: relative;
+	border-radius: 5px;
+	background-color: #000;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
 }
 
 .jj-preview .jj-image-container::before {
-  overflow: visible;
-  position: absolute;
-  left: -18px;
-  top: 45%;
-  cursor: pointer;
-  content: "\2039";
-  font-size: 48px;
-  color: #888;
+	overflow: visible;
+	position: absolute;
+	left: -18px;
+	top: 45%;
+	cursor: pointer;
+	content: "\2039";
+	font-size: 48px;
+	color: #888;
 }
 
 .jj-preview .jj-image-container::after {
-  overflow: visible;
-  position: absolute;
-  right: -18px;
-  top: 45%;
-  cursor: pointer;
+	overflow: visible;
+	position: absolute;
+	right: -18px;
+	top: 45%;
+	cursor: pointer;
 	content: "\203a";
-  font-size: 48px;
-  color: #888;
+	font-size: 48px;
+	color: #888;
 }
 
 .jj-gallery {
-  text-align: center;
-  flex: 1 1 auto;
+	text-align: center;
+	flex: 1 1 auto;
 }
 
 .jj-gallery .foogallery {
-  display: none;
-  white-space: normal;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
+	display: none;
+	white-space: normal;
+	flex-wrap: wrap;
+	padding: 0;
+	margin: 0;
 }
 
-.jj-gallery .foogallery > div {
-  display: inline-block;
-  margin: 0 7.5px 15px;
-  font-size: 0;
+.jj-gallery .foogallery>div {
+	display: inline-block;
+	margin: 0 7.5px 15px;
+	font-size: 0;
 }
 
 .jj-gallery .foogallery img {
-	box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  border-radius: 3px;
-  width: 80px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+	border-radius: 3px;
+	width: 80px;
+}
+
+.jj-gallery-item {
+	position: relative;
+}
+
+.jj-gallery-item .lightbox {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	display: none;
+	z-index: 15;
+	background-image: url('../assets/fullscreen.png');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	height: 24px;
+	width: 24px;
+}
+
+.jj-gallery-item:hover .lightbox {
+	display: block;
 }
 
 @media (min-width: 768px) {
-  .jj-container {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .jj-container > * {
-    flex: 1 1 auto;
-    width: auto;
-  }
-
-  .jj-albums {
-    white-space: nowrap;
-    min-width: 120px;
-  }
-
-  .jj-preview .jj-image-container {
-    width: 240px;
-    height: 426px;
-    margin: 0 1rem;
-  }
-
-  .jj-gallery .foogallery {
-    flex: 1 1 100%;
-    display: block;
-  }
-
-  .jj-gallery .jj-gallery-item img {
-    width: 30px;
-  }
+	.jj-container {
+		display: flex;
+		flex-wrap: nowrap;
+	}
+	.jj-container>* {
+		flex: 1 1 auto;
+		width: auto;
+	}
+	.jj-albums {
+		white-space: nowrap;
+		min-width: 120px;
+	}
+	.jj-preview .jj-image-container {
+		width: 240px;
+		height: 426px;
+		margin: 0 1rem;
+	}
+	.jj-gallery .foogallery {
+		flex: 1 1 100%;
+		display: block;
+	}
+	.jj-gallery .jj-gallery-item img {
+		width: 30px;
+	}
 }
 
 @media (min-width: 1024px) {
-  .jj-preview .jj-image-container {
-    width: 300px;
-    height: 533px;
-    margin: 0 1rem;
-  }
-
-  .jj-gallery .jj-gallery-item img {
-    width: 60px;
-  }
+	.jj-preview .jj-image-container {
+		width: 300px;
+		height: 533px;
+		margin: 0 1rem;
+	}
+	.jj-gallery .jj-gallery-item img {
+		width: 60px;
+	}
 }
 
 @media (min-width: 1366px) {
-  .jj-gallery .jj-gallery-item img {
-    width: 75px;
-  }
+	.jj-gallery .jj-gallery-item img {
+		width: 75px;
+	}
 }
