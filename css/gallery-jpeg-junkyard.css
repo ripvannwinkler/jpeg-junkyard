@@ -163,15 +163,16 @@
 
 .jj-gallery-item .lightbox {
 	position: absolute;
-	left: 5px;
-	top: 5px;
+	right: 0;
+	left: 0;
+	top: 0; 
 	display: none;
 	z-index: 15;
-	background-image: url('../assets/fullscreen.png');
-	background-repeat: no-repeat;
-	background-size: 24px 24px;
-	height: 24px;
-	width: 24px;
+	font-size: 12px;
+	background-color: rgba(0,0,0,.6);
+	padding: 0.5rem;
+	line-height: 1.2;
+	color:#fff;
 }
 
 .jj-gallery-item:hover .lightbox {
