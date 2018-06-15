@@ -110,22 +110,22 @@
 .jj-preview .jj-image-container::before {
   overflow: visible;
   position: absolute;
-  left: -28px;
-  top: 50%;
+  left: -18px;
+  top: 45%;
   cursor: pointer;
-  content: "\25c0";
-  font-size: 24px;
+  content: "\2039";
+  font-size: 48px;
   color: #888;
 }
 
 .jj-preview .jj-image-container::after {
   overflow: visible;
   position: absolute;
-  right: -28px;
-  top: 50%;
+  right: -18px;
+  top: 45%;
   cursor: pointer;
-  content: "\25ba";
-  font-size: 24px;
+	content: "\203a";
+  font-size: 48px;
   color: #888;
 }
 
