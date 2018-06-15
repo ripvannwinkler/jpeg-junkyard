@@ -1,4 +1,4 @@
-var gallery = [].slice.call(document.querySelectorAll(".jj-gallery-item a"));
+var gallery = [].slice.call(document.querySelectorAll(".jj-gallery-item a:nth-child(2)"));
 var container = document.querySelector(".jj-image-container");
 
 nextInterval = 0;
