@@ -30,7 +30,7 @@ function get_gallery_items($gallery, $args)
     $html = "";
     foreach ($gallery->attachments() as $attachment) {
 				$html .= '<div class="jj-gallery-item">';
-				$html .= '<a href="' . $attachment->url . '" class="lightbox" rel="lightbox">View Full Screen</a>';
+				$html .= '<a href="' . $attachment->url . '" title=" ' . $attachment->caption . ' " class="lightbox" rel="lightbox">View Full Screen</a>';
 				$html .= $attachment->html($args);
 				$html .= '</div>';
     }
