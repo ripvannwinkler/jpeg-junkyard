@@ -4,104 +4,124 @@
  * This is the template that is run when a FooGallery shortcode is rendered to the frontend
  */
 
-function modify_html_attrs($attr,$args,$obj) {
-	return array_merge($attr, array('rel'=>'lightbox'));
-}
+global $current_foogallery;
+global $current_foogallery_arguments;
+
+/**
+ * Add rel=lightbox and otherss
+ */
+
+// if (!function_exists('modify_html_attrs')) {
+//     function modify_html_attrs($attr, $args, $obj)
+//     {
+//         return array_merge($attr, array('rel'=>'lightbox'));
+//     }
+// }
 
 // add_filter('foogallery_attachment_html_link_attributes', 'modify_html_attrs',10,3);
 
-function get_gallery_menu($galleries, $cgid)
-{
-    $html = "";
-    foreach ($galleries as $g) {
-        $id = $g->ID;
-        $vol = substr($g->name, 2, 99);
-        $active_class = ($id == $cgid) ? 'active' : '';
-        $link = "<a href='?vol=$id'>Vol. $vol</a>";
-        $wrapper = "<div class='jj-menu-item $active_class' data-id='$id' data-cgid='$cgid'>$link</div>";
-        $html .= $wrapper;
+
+/**
+ * Build list of vol. ??? links for left side
+ */
+if (!function_exists('get_gallery_menu')) {
+    function get_gallery_menu($galleries, $cgid)
+    {
+        $html = "";
+        foreach ($galleries as $g) {
+            $id = $g->ID;
+            $vol = substr($g->name, 2, 99);
+            $active_class = ($id == $cgid) ? 'active' : '';
+            $link = "<a href='?vol=$id'>Vol. $vol</a>";
+            $wrapper = "<div class='jj-menu-item $active_class' data-id='$id' data-cgid='$cgid'>$link</div>";
+            $html .= $wrapper;
+        }
+
+        return $html;
     }
-
-    return $html;
 }
 
-function get_gallery_items($gallery, $args)
-{
-    $html = "";
-    foreach ($gallery->attachments() as $attachment) {
-				$html .= '<div class="jj-gallery-item">';
-				$html .= '<a href="' . $attachment->url . '" title=" ' . $attachment->caption . ' " class="lightbox" rel="lightbox">View Full Screen</a>';
-				$html .= $attachment->html($args);
-				$html .= '</div>';
+/**
+ * Build html elements for thumbnail section
+ */
+if (!function_exists('get_gallery_items')) {
+    function get_gallery_items($gallery, $args)
+    {
+        $html = "";
+        foreach ($gallery->attachments() as $attachment) {
+            $html .= '<div class="jj-gallery-item">';
+            $html .= '<a href="' . $attachment->url . '" title=" ' . $attachment->caption . ' " class="lightbox" rel="lightbox">View Full Screen</a>';
+            $html .= $attachment->html($args);
+            $html .= '</div>';
+        }
+
+        return $html;
     }
-
-    return $html;
 }
 
-function filter_galleries($gallery)
-{
-    return substr($gallery->name, 0, 2) == "jj";
-}
-
-function gallery_cmp($a, $b)
-{
-    return strcmp($a->name, $b->name);
-}
-
-global $current_foogallery; // current loaded gallery
-global $current_foogallery_arguments; // current shortcude args
-$gallery = $current_foogallery;
-
-// get list of galleries for menu
+/**
+ * Get and sort all galleries named jj???
+ */
 $galleries = foogallery_get_all_galleries();
-$galleries = array_filter($galleries, 'filter_galleries');
-usort($galleries, 'gallery_cmp');
-$gallery = $galleries[0];
+$galleries = array_filter($galleries, function ($g) {
+    return substr($g->name, 0, 2) == "jj";
+});
 
-// does query string have a gallery ID?
-$gid = isset($_GET["vol"]) ? $_GET["vol"] : null;
+usort($galleries, function ($a, $b) {
+    return strcmp($a->name, $b->name);
+});
 
-if (isset($gid)) {
-    // override current gallery selection
-    $gallery = FooGallery::get_by_id($gid);
+/**
+ * Defalut to the first gallery in the list
+ */
+$current_foogallery = $galleries[0];
+
+/**
+ * If gallery ID in query string, use that one
+ */
+if (isset($_GET["vol"])) {
+    $current_foogallery = FooGallery::get_by_id($_GET["vol"]);
 }
 
-// get our thumbnail sizing args
-$args = foogallery_gallery_template_setting('thumbnail_size', 'thumbnail');
+/**
+ * Get arguments to pass to FooGallery when building thumbnails
+ */
 
-// override w/h
-$args['height'] = 533;
-$args['width'] = 300;
+$args = array(
+    'width'=>300,
+    'height'=>533,
+    'crop'=>1
+);
 
-//add the link setting to the args
-$args['link'] = foogallery_gallery_template_setting('thumbnail_link', 'image');
+/**
+ * Build our HTML elements
+ */
+$volumes = get_gallery_menu($galleries, $current_foogallery->ID);
+$thumbnails = get_gallery_items($current_foogallery, $args);
+$attachments = $current_foogallery->attachments();
+$initial_image = $attachments[0]->url;
 
-//get which lightbox we want to use
-// $lightbox = foogallery_gallery_template_setting('lightbox', 'unknown');
-
-// html attribtues for later
-$html_id = 'foogallery-gallery-' . $gallery->ID;
-$html_class = 'foogallery';
-
-$menu = get_gallery_menu($galleries, $gallery->ID);
-$gallery_items = get_gallery_items($gallery, $args);
-$image_start = $gallery->attachments()[0]->url;
+/**
+ * Some HTML tag stuff for rendering
+ */
+$gallery_attr_id = 'foogallery-gallery-' . $current_foogallery->ID;
+$gallery_attr_class = 'foogallery';
 
 ?>
 
 <div class="jj-container">
 	<div class="jj-albums">
 		<div>
-			<?=$menu?>
+			<?=$volumes?>
 		</div>
 	</div>
 	<div class="jj-preview">
-		<div class="jj-image-container" style="background: url('<?=$image_start?>') center center / cover;">
+		<div class="jj-image-container" style="background: url('<?=$initial_image?>') center center / cover;">
 		</div>
 	</div>
 	<div class="jj-gallery">
-		<div id="<?=$html_id?>" class="<?=$html_class?>">
-			<?=$gallery_items?>
+		$<div id="<?=gallery_attr_id?>" class="<?=$gallery_attr_class?>">
+			<?=$thumbnails?>
 		</div>
 	</div>
 </div>
