@@ -55,16 +55,18 @@ function galleryPreviewClick(e) {
 
 function initGalleryItems() {
 	document.addEventListener('click', function (e) {
-		if (e.originalTarget.parentNode.dataset.attachmentId) {
-			e.preventDefault();
-			e.stopPropagation();
-			setPreviewImage(e.originalTarget.parentNode.href);
+		e.preventDefault();
+		e.stopPropagation();
+
+		var t = e.srcElement || e.originalTarget || e.target;
+		var p = t ? t.parentNode : null;
+
+		if (p) {
+			if (p.dataset.attachmentId) {
+				setPreviewImage(p.href);
+			}
 		}
-	})
-	// for (var i = 0; i < gallery.length; i++) {
-	// 	var item = gallery[i];
-	// 	item.addEventListener("click", galleryItemClick);
-	// }
+	});
 }
 
 function initPreviewItems() {
