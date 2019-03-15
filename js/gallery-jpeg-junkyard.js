@@ -55,14 +55,14 @@ function galleryPreviewClick(e) {
 
 function initGalleryItems() {
 	document.addEventListener('click', function (e) {
-		e.preventDefault();
-		e.stopPropagation();
 
 		var t = e.srcElement || e.originalTarget || e.target;
 		var p = t ? t.parentNode : null;
 
 		if (p) {
 			if (p.dataset.attachmentId) {
+				e.preventDefault();
+				e.stopPropagation();
 				setPreviewImage(p.href);
 			}
 		}
